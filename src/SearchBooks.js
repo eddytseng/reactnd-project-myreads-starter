@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Debounce } from 'react-throttle';
 
 class SearchBooks extends Component {
     render() {
@@ -10,12 +11,14 @@ class SearchBooks extends Component {
                 <div className="search-books-bar">
                     <Link onClick={() => clearQuery()} to="/" className="close-search" title="Go back to bookshelf">Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input
-                            type="text"
-                            placeholder="Search by title or author"
-                            onChange={(event) => onSearchChange(event)}
-                            autoFocus
-                        />
+                        <Debounce time="400" handler="onChange">
+                            <input
+                                type="text"
+                                placeholder="Search by title or author"
+                                onChange={(event) => onSearchChange(event)}
+                                autoFocus
+                            />
+                        </Debounce>
                     </div>
                 </div>
                 <div className="search-books-results">

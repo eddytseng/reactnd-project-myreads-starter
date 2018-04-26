@@ -45,7 +45,7 @@ class BooksApp extends React.Component {
                     this.setState({ bookshelf });
 
                     this.setState(state => ({
-                        results: this.state.results.map((b) => {
+                        results: state.results.map((b) => {
                             // Check to see if book from search is already on bookshelf and if so, is it on a different shelf
                             if (b.id === book.id && b.shelf !== shelf) {
                                 b.shelf = shelf;
@@ -69,7 +69,7 @@ class BooksApp extends React.Component {
     // Handle onchange event on input field for book queries
     handleSearchChange = (event) => {
         const query = event.target.value;
-
+        console.log('Searching for', query);
         if (query) {
             // Search with query
             BooksAPI
